@@ -34,6 +34,8 @@ builder.Services.AddSwaggerGen(c => {
 });
 
 builder.Services.AddSingleton<ILoggerService, LoggerService>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 builder.Services.AddCors(o =>
 {
