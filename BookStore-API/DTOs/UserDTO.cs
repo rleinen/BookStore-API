@@ -1,8 +1,13 @@
-﻿namespace BookStore_API.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BookStore_API.DTOs
 {
     public class UserDTO
     {
-        public string Username { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        [StringLength(15,MinimumLength = 6)]
         public string Password { get; set; }
 
     }

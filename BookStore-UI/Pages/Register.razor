@@ -1,0 +1,36 @@
+﻿@page "/Register"
+@using BookStore_UI.Models
+
+<PageTitle>Registration Form</PageTitle>
+
+<div class="card">
+    <h3 class="card-title">Register Now</h3>
+    <div class="card-body">
+        <EditForm Model="model" OnValidSubmit="SubmitRegistration">
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+            <div class="mb-3">
+                <label for="email">Email Address</label>
+                <InputText id="email" class="form-control" @bind-Value="model.Email"/>
+                <ValidationMessage For="@(() => model.Email)"/>
+            </div>
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <InputText id="password" class="form-control" @bind-Value="model.Password"/>
+                <ValidationMessage For="@(() => model.Password)"/>
+            </div>
+            <div class="mb-3">
+                <label for="confirm">Confirm Password</label>
+                <InputText id="confirm" class="form-control" @bind-Value="model.ConfirmPassword"/>
+                <ValidationMessage For="@(() => model.ConfirmPassword)"/>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary"></button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private RegistrationModel model = new RegistrationModel();
+}
