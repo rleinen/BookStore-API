@@ -5,6 +5,7 @@ namespace BookStore_UI.Models
     public class RegistrationModel
     {
         [Required]
+        [EmailAddress]
         [Display(Name = "Email Address")]
         public string Email { get; set; }
         
@@ -24,5 +25,14 @@ namespace BookStore_UI.Models
 
     public class LoginModel
     {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }

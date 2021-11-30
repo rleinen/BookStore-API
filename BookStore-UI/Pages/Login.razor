@@ -1,22 +1,20 @@
-﻿@page "/Register"
-@using BookStore_UI.Models
-@using BookStore_UI.Contracts
+﻿@page "/login"
 
 @inject IAuthenticationRepository _authRepo
 @inject NavigationManager _navMan
 
-<PageTitle>Registration Form</PageTitle>
+<PageTitle>Login Form</PageTitle>
 
 <div class="card">
-    <h3 class="card-title">Register Now</h3>
+    <h3 class="card-title">Login</h3>
     @if (response == false)
     {
         <div class="alert alert-danger">
-            <p>Register Failed</p>
+            <p>Login Failed</p>
         </div>
     }
     <div class="card-body">
-        <EditForm Model="model" OnValidSubmit="SubmitRegistration">
+        <EditForm Model="model" OnValidSubmit="SubmitLogin">
             <DataAnnotationsValidator/>
             <ValidationSummary/>
             <div class="mb-3">
@@ -29,28 +27,23 @@
                 <InputText id="password" class="form-control" @bind-Value="model.Password"/>
                 <ValidationMessage For="@(() => model.Password)"/>
             </div>
-            <div class="mb-3">
-                <label for="confirm">Confirm Password</label>
-                <InputText id="confirm" class="form-control" @bind-Value="model.ConfirmPassword"/>
-                <ValidationMessage For="@(() => model.ConfirmPassword)"/>
-            </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </EditForm>
     </div>
 </div>
 
 @code {
-    private RegistrationModel model = new RegistrationModel();
+    private LoginModel model = new LoginModel();
     private bool response = true;
 
-    private async Task SubmitRegistration()
+    private async Task SubmitLogin()
     {
-        response = await _authRepo.Register(model);
+        response = await _authRepo.Login(model);
         if (response)
         {
-            _navMan.NavigateTo("/login");
+            _navMan.NavigateTo("/");
         }
 
     }
